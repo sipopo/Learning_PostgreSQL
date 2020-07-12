@@ -1,0 +1,18 @@
+version: "3.0"
+services:
+  pgadmin:
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin
+      - PGADMIN_DEFAULT_PASSWORD=test1234
+    image: dpage/pgadmin4 
+    ports:
+      - "8080:80"
+    volumes:
+      # save settings for pgadmin 
+      - ./volume/pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
+  postgres:
+    environment:
+      - POSTGRES_PASSWORD=test1234
+    image: postgres
